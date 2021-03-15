@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import "./style.css";
+import MovieList from './MovieList';
 
 export default function MovieForm() {
   const [movieName, setMovieName] = useState("");
   const [review, setReview] = useState("");
-  const [movieReviewList, setMovieReviewList] = useState([])
 
   useEffect(()=> {
    Axios.get('http://localhost:3001/api/get').then((response)=> {
@@ -52,9 +52,7 @@ export default function MovieForm() {
       <div className="buttonForm">
         <button onClick={submitReview}>Submit</button>
       </div>
-      {movieReviewList.map((val)=> {
-        return <h1>Movie Name: {val.movieName} | Movie Review: {val.movieReview}</h1>
-      })}
+       <MovieList />
     </div>
   );
 }
