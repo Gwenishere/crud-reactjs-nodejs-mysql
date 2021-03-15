@@ -1,21 +1,13 @@
 const express = require("express");
 
 const app = express();
-const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const mysql = require("mysql");
-
-const db = mysql.createPool({
-  host: "localhost",
-  user: "admin",
-  password: "",
-  database: "cruddatabase"
-});
+const db = require('../config/db'); // import modele db => models 
 
 app.use(cors())
 app.use(express.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}))
 
 app.get("/api/get", (req, res)=> {
   const sqlSelect = 
